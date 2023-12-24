@@ -52,7 +52,11 @@ app.get("/", (req, res) => res.json("Hello World!"));
 
 app.use(
 	cors({
-		origin: ["https://blog-test-cient.vercel.app"],
+		origin: [
+			"http://localhost:5173",
+			"https://blog-test-cient.vercel.app",
+			"http://127.0.0.1:5173",
+		],
 		credentials: true,
 	})
 );
