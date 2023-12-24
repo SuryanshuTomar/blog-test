@@ -14,13 +14,11 @@ export function UserContextProvider({ children }) {
 
 	const getUser = async () => {
 		try {
-			const res = await axios.get(URL + "/api/auth/refetch", null, {
+			const res = await axios.get(URL + "/api/auth/refetch", {
 				withCredentials: true,
 			});
 
-			console.log("User: ", res.data);
-			const user = JSON.parse(localStorage.getItem("user"));
-			setUser(res.data ?? user);
+			setUser(res.data);
 		} catch (err) {
 			console.log(err);
 		}

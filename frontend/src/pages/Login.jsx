@@ -19,11 +19,7 @@ const Login = () => {
 				{ email, password },
 				{ withCredentials: true }
 			);
-			// console.log(res.data)
-			// Store the token in local storage or any client-side state management
-			const { userInfo } = res.data;
-			localStorage.setItem("user", JSON.stringify(userInfo));
-			setUser(userInfo);
+			setUser(res.data);
 			navigate("/");
 		} catch (err) {
 			setError(true);

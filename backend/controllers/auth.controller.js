@@ -54,7 +54,7 @@ const loginUser = async (req, res) => {
 			secure: true,
 		})
 			.status(200)
-			.json({ token, userInfo: info });
+			.json(info);
 	} catch (err) {
 		res.status(500).json(err);
 	}
