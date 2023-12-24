@@ -54,7 +54,7 @@ app.use(express.json());
 app.use("/images", express.static(path.join(__dirname, "/images")));
 app.use(
 	cors({
-		origin: ["https://blog-test-cient.vercel.app"],
+		origin: ["https://blog-test-cient.vercel.app/"],
 		methods: ["GET", "POST", "PUT", "DELETE"],
 		credentials: true,
 	})
