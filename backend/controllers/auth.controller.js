@@ -40,10 +40,10 @@ const loginUser = async (req, res) => {
 			process.env.SECRET,
 			{
 				expiresIn: "3d",
-				path: "/",
-				httpOnly: true,
-				sameSite: "none",
-				secure: true,
+				// path: "/",
+				// httpOnly: true,
+				// sameSite: "none",
+				// secure: true,
 			}
 		);
 		console.log("Login token ", token);
