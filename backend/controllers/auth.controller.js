@@ -49,7 +49,7 @@ const loginUser = async (req, res) => {
 		console.log("Login token ", token);
 		const { password, ...info } = user._doc;
 		res.cookie("token", token, {
-			httpOnly: true,
+			// httpOnly: true,
 			sameSite: "none",
 			secure: true,
 		})
