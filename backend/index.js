@@ -36,6 +36,14 @@ cloudinary.config({
 	api_secret: process.env.CLOUD_KEY_SECRET,
 });
 
+console.log("Check : ", {
+	MONGO_URL: process.env.MONGO_URL,
+	Port: process.env.PORT,
+	cloud_name: process.env.CLOUD_NAME,
+	api_key: process.env.CLOUD_KEY,
+	api_secret: process.env.CLOUD_KEY_SECRET,
+});
+
 // Middlewares
 const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
