@@ -39,8 +39,11 @@ const loginUser = async (req, res) => {
 			{ _id: user._id, username: user.username, email: user.email },
 			process.env.SECRET,
 			{
+				httpOnly: true,
 				secure: true, // Set to true in a live environment with HTTPS
 				expiresIn: "3d",
+				domain: "vercel.app", // You can omit this to use the domain of the originating request
+				path: "/",
 			}
 		);
 		const { password, ...info } = user._doc;
