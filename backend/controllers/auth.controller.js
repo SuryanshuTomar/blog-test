@@ -34,10 +34,13 @@ const loginUser = async (req, res) => {
 			username: user.username,
 			email: user.email,
 		});
+
 		const token = jwt.sign(
 			{ _id: user._id, username: user.username, email: user.email },
 			process.env.SECRET,
-			{ expiresIn: "3d" }
+			{
+				expiresIn: "3d",
+			}
 		);
 		const { password, ...info } = user._doc;
 		res.cookie("token", token).status(200).json(info);
@@ -48,7 +51,7 @@ const loginUser = async (req, res) => {
 
 const logoutUser = async (req, res) => {
 	try {
-		res.clearCookie("token", { sameSite: "none", secure: true })
+		res.clearCookie("token")
 			.status(200)
 			.send("User logged out successfully!");
 	} catch (err) {

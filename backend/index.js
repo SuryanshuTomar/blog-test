@@ -36,20 +36,15 @@ cloudinary.config({
 	api_secret: process.env.CLOUD_KEY_SECRET,
 });
 
-console.log("Check : ", {
-	MONGO_URL: process.env.MONGO_URL,
-	Port: process.env.PORT,
-	cloud_name: process.env.CLOUD_NAME,
-	api_key: process.env.CLOUD_KEY,
-	api_secret: process.env.CLOUD_KEY_SECRET,
-});
-
 // Middlewares
 const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
 
 app.get("/", (req, res) => res.json("Hello World!"));
 
+app.use(express.json());
+app.use(cookieParser());
+app.use("/images", express.static(path.join(__dirname, "/images")));
 app.use(
 	cors({
 		origin: [
@@ -60,10 +55,6 @@ app.use(
 		credentials: true,
 	})
 );
-
-app.use(express.json());
-app.use("/images", express.static(path.join(__dirname, "/images")));
-app.use(cookieParser());
 
 app.use("/api/auth", authRoute);
 app.use("/api/users", userRoute);
