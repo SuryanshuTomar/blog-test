@@ -35,7 +35,8 @@ const loginUser = async (req, res) => {
 			email: user.email,
 		});
 
-		const token = jwt.sign(
+		console.log("Check1", process.env.SECRET);
+		const token = await jwt.sign(
 			{ _id: user._id, username: user.username, email: user.email },
 			process.env.SECRET,
 			{
@@ -46,7 +47,8 @@ const loginUser = async (req, res) => {
 				path: "/",
 			}
 		);
-		console.log("Login token ", token, process.env.SECRET);
+		console.log("Check2");
+		console.log("Login token ", token);
 		const { password, ...info } = user._doc;
 		res.cookie("token", token).status(200).json(info);
 	} catch (err) {
