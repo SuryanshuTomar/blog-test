@@ -39,6 +39,9 @@ const loginUser = async (req, res) => {
 			{ _id: user._id, username: user.username, email: user.email },
 			process.env.SECRET,
 			{
+				httpOnly: true,
+				secure: true, // Set to true in a live environment with HTTPS
+				sameSite: "strict",
 				expiresIn: "3d",
 			}
 		);
