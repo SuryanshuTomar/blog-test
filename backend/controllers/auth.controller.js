@@ -42,10 +42,11 @@ const loginUser = async (req, res) => {
 				httpOnly: true,
 				secure: true, // Set to true in a live environment with HTTPS
 				expiresIn: "3d",
-				domain: "vercel.app", // You can omit this to use the domain of the originating request
+				domain: "blog-test-cient.vercel.app", // You can omit this to use the domain of the originating request
 				path: "/",
 			}
 		);
+		console.log("Login token ", token, process.env.SECRET);
 		const { password, ...info } = user._doc;
 		res.cookie("token", token).status(200).json(info);
 	} catch (err) {
@@ -65,6 +66,8 @@ const logoutUser = async (req, res) => {
 
 const refreshUserToken = (req, res) => {
 	const token = req.cookies.token;
+	console.log("Refreshing token ", token);
+
 	jwt.verify(token, process.env.SECRET, {}, async (err, data) => {
 		if (err) {
 			return res.status(404).json(err);
