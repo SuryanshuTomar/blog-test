@@ -50,16 +50,17 @@ const upload = multer({ storage: storage });
 
 app.get("/", (req, res) => res.json("Hello World!"));
 
-app.use(express.json());
-app.use("/images", express.static(path.join(__dirname, "/images")));
 app.use(
 	cors({
-		origin: ["https://blog-test-cient.vercel.app/"],
-		methods: ["GET", "POST", "PUT", "DELETE"],
+		origin: ["https://blog-test-cient.vercel.app"],
 		credentials: true,
 	})
 );
+
+app.use(express.json());
+app.use("/images", express.static(path.join(__dirname, "/images")));
 app.use(cookieParser());
+
 app.use("/api/auth", authRoute);
 app.use("/api/users", userRoute);
 app.use("/api/posts", postRoute);
