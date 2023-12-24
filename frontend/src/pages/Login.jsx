@@ -20,7 +20,10 @@ const Login = () => {
 				{ withCredentials: true }
 			);
 			// console.log(res.data)
-			setUser(res.data);
+			// Store the token in local storage or any client-side state management
+			const { token, userInfo } = res.data;
+			localStorage.setItem("token", token);
+			setUser(userInfo);
 			navigate("/");
 		} catch (err) {
 			setError(true);

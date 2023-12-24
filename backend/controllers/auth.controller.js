@@ -35,20 +35,18 @@ const loginUser = async (req, res) => {
 			email: user.email,
 		});
 
-		console.log("Check1", process.env.SECRET);
 		const token = await jwt.sign(
 			{ _id: user._id, username: user.username, email: user.email },
 			process.env.SECRET,
 			{
-				httpOnly: true,
-				secure: true, // Set to true in a live environment with HTTPS
+				// httpOnly: true,
+				// secure: true, // Set to true in a live environment with HTTPS
 				expiresIn: "3d",
 			}
 		);
-		console.log("Check2");
 		console.log("Login token ", token);
 		const { password, ...info } = user._doc;
-		res.cookie("token", token).status(200).json(info);
+		res.cookie("token", token).status(200).json({ token, userInfo: info });
 	} catch (err) {
 		res.status(500).json(err);
 	}

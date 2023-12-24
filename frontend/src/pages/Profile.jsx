@@ -37,6 +37,7 @@ const Profile = () => {
 			await axios.delete(URL + "/api/users/" + user?._id, {
 				withCredentials: true,
 			});
+			localStorage.removeItem("token");
 			setUser(null);
 			navigate("/");
 		} catch (err) {
