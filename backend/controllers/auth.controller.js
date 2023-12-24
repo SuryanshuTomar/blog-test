@@ -43,8 +43,6 @@ const loginUser = async (req, res) => {
 				httpOnly: true,
 				secure: true, // Set to true in a live environment with HTTPS
 				expiresIn: "3d",
-				domain: "blog-test-cient.vercel.app", // You can omit this to use the domain of the originating request
-				path: "/",
 			}
 		);
 		console.log("Check2");
