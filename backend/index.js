@@ -40,6 +40,8 @@ cloudinary.config({
 const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
 
+app.get("/", (req, res) => res.json("Hello World!"));
+
 app.use(express.json());
 app.use("/images", express.static(path.join(__dirname, "/images")));
 app.use(
