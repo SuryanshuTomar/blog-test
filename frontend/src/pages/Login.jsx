@@ -21,8 +21,8 @@ const Login = () => {
 			);
 			// console.log(res.data)
 			// Store the token in local storage or any client-side state management
-			const { token, userInfo } = res.data;
-			localStorage.setItem("token", token);
+			const { userInfo } = res.data;
+			localStorage.setItem("user", JSON.stringify(userInfo));
 			setUser(userInfo);
 			navigate("/");
 		} catch (err) {

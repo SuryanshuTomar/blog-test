@@ -17,8 +17,10 @@ export function UserContextProvider({ children }) {
 			const res = await axios.get(URL + "/api/auth/refetch", {
 				withCredentials: true,
 			});
+
 			console.log("User: ", res.data);
-			setUser(res.data);
+			const user = JSON.parse(localStorage.getItem("user"));
+			setUser(res.data ?? user);
 		} catch (err) {
 			console.log(err);
 		}
